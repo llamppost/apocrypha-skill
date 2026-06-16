@@ -1,52 +1,58 @@
-# 後傳孵化器 · Apocrypha
+# Apocrypha · 後傳孵化器
 
-> Drop in any world — a film, a book, a person, an event, a board game — and Apocrypha hatches a self-consistent, installable, playable text-game GM where **you** step inside and live your own continuation. The engine ships no IP; you bring the world.
->
-> 你給它一個世界，它孵化出一段屬於「你」的後傳。它不重述原作，它讓你走進去活一遍。
+> [English](README.md) · [中文](README.zh-TW.md)
+
+> Drop in any world, a film, a book, a person, an event, a board game, and Apocrypha hatches a self-consistent, installable, playable text-game GM where **you** step inside and live your own continuation. The engine ships no IP; you bring the world.
 
 **Made by [llamppost](https://llamppost.ai) · MIT License**
 
 ---
 
-## 這是什麼
+## What this is
 
-Apocrypha 是一台**孵化引擎**：餵它一個世界（一個 IP 或主題），它用一套精簡的世界蒸餾邏輯把世界觀拆透、解出「世界 DNA」，再灌進固定的模擬器骨架，吐出一支**世界自洽、可安裝、可即玩**的沉浸式文字遊戲 GM。
+Apocrypha is a **hatching engine**: feed it a world (an IP or a theme) and it uses a lean world-distillation logic to take the worldview apart, solve for its "world DNA," then pour that into a fixed simulator skeleton and ship a **world-consistent, installable, instantly playable** immersive text-game GM.
 
-產物的本質是**後傳**：你把自己插進那個世界，孵化一段原作裡沒有、但邏輯上站得住的延續故事。你可以選三種玩法：
+What it produces is, at heart, an **apocryphal sequel**: you drop yourself into that world and hatch a continuation the original never told, but one that holds up logically. You can play it three ways:
 
-- **原創角色自插** — 在那個世界活出一條書裡沒跟到的線
-- **扮演正典角色** — 直接成為書中某個角色本人
-- **見證正典** — 跟著某個角色的線走，看他會發生什麼
+- **Drop in an original character of your own**: live out a thread the book never followed in that world
+- **Play a canon character**: become one of the characters from the story directly
+- **Witness the canon**: follow a character's thread and watch what happens to them
 
-連桌遊都能孵：給它一套社交推理規則，它產出的不是說故事，而是一台會發牌、跑回合、操控 AI 對手、藏住隱藏身份的「遊戲跑分器」。
+It can even hatch board games: give it a set of social-deduction rules and what it produces isn't storytelling, it's a "game runner" that deals cards, runs turns, drives AI opponents, and keeps hidden identities hidden.
 
-## IP 姿態（重要）
+## IP stance (important)
 
-引擎本身**永遠 IP 乾淨**，不預載、不內嵌任何真實作品。真實世界由**你在自己 runtime 執行時自帶**（BYO-world）。孵出來的成品引用該世界的專有名詞，那是你自己 runtime 裡的後傳產物。本 repo 散布的只有**引擎**，不含任何特定 IP 的成品。
+The engine itself is **always IP-clean**: it preloads nothing and embeds no real work. The real world is something **you bring yourself when you run it in your own runtime** (BYO-world). When a hatched product references that world's proper nouns, that's an apocryphal sequel living inside your own runtime. All this repo distributes is the **engine**, with no finished product tied to any specific IP.
 
-## 怎麼用
+## How to use it
 
-把這個 repo 當作一支 agent skill 安裝（Claude Code、Codex、以及其他支援 skill 的 runtime）：
+Install this repo as an agent skill (Claude Code, Codex, and any other runtime that supports skills):
 
-1. 把整個資料夾放進你的 skills 目錄（例如 Claude Code 的 `~/.claude/skills/apocrypha/`）。
-2. 在對話裡說「孵化模擬器」「把《某部作品》做成模擬器」「做一個 XX 的文字遊戲」。
-3. 引擎會跟你鎖定世界與玩法，孵出一支可安裝的 GM，問你要不要當場開玩。
+1. Drop the whole folder into your skills directory (for example, Claude Code's `~/.claude/skills/apocrypha/`).
+2. In conversation, say "hatch a simulator," "turn *some work* into a simulator," or "make a text game out of XX."
+3. The engine locks down the world and the play style with you, hatches an installable GM, and asks if you want to start playing right there.
 
-引擎內容：
+What's in the engine:
 
-- `SKILL.md` — 編排腦：6 個 phase（定境 → 探源 → 煉核 → 鑄器 → 校境 → 開孵）
-- `references/simulator-template.md` — 模擬器骨架 15 區塊填空模板
-- `references/immersive-prose-engine.md` — 反 AI 味的沉浸散文鐵律，注入每一支成品
+- `SKILL.md`: the orchestration brain: 6 phases (set the frame → trace the source → distill the core → forge the vessel → calibrate the world → begin hatching)
+- `references/simulator-template.md`: a fill-in-the-blanks simulator skeleton in 15 blocks
+- `references/immersive-prose-engine.md`: the anti-AI-slop rules for immersive prose, injected into every product
 
-## 兩個入口
+## Entry points
 
-- **GitHub（這裡）**：clone 下來，當 standalone skill 自由使用、修改、散布。
-- **llamppost**：透過 llamppost 一鍵安裝（免費）。詳見 https://llamppost.ai。
+- **GitHub (here)**: clone it and use, modify, and distribute it freely as a standalone skill.
+- **llamppost**: one-click install through llamppost (free). See https://llamppost.ai for details.
 
-## 授權與標註
+## Try it instantly (ChatGPT)
 
-MIT License。歡迎自由使用、修改、散布、商用。請依 MIT 條款**保留版權與創作標註**：
+Want a quick taste before installing? Play in the [Apocrypha GPT](https://chatgpt.com/g/g-6a2a320f3c688191a8e702d816297bbc-apocrypha-hou-chuan-fu-hua-qi) right inside ChatGPT.
 
-> 後傳孵化器 · Apocrypha 由 **llamppost** 創作（https://llamppost.ai）。
+Note: the ChatGPT version is a limited taster. For the full experience, install the engine above into your own runtime.
+
+## License and attribution
+
+MIT License. You're welcome to use, modify, distribute, and sell it freely. Please **keep the copyright and creator attribution** per the MIT terms:
+
+> Apocrypha is created by **llamppost** (https://llamppost.ai). Please keep this attribution per the MIT terms.
 
 © 2026 llamppost

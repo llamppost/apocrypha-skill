@@ -1,121 +1,123 @@
 ---
 name: apocrypha
-description: 後傳孵化器——沉浸式模擬器孵化器。輸入任何一個世界（影視／書籍／某個人／某件事／一套桌遊），用一套精簡的世界蒸餾邏輯探勘世界觀、解出世界 DNA，孵化出一支世界自洽、可安裝的沉浸式文字遊戲 GM skill（玩家自插的「後傳」）。引擎本身 IP 乾淨、不預載任何作品。使用者說「孵化模擬器」「後傳孵化器」「把 XX 做成模擬器」「做一個 XX 的文字遊戲」時 invoke。
+description: Apocrypha, an immersive simulator incubator. Feed it any world (a film or show, a book, a person, an event, a tabletop game), and a lean world-distillation logic excavates the worldview, solves for its world DNA, and hatches an internally consistent, installable immersive text-game GM skill (the apocryphal sequel you write yourself into). The engine itself is IP-clean and pre-loads no source material. Invoke when the user says "hatch a simulator," "Apocrypha," "turn XX into a simulator," or "make a text game out of XX."
 tools: Read, Write, Edit
 license: MIT
 author: llamppost (https://llamppost.ai)
 ---
 
-# 後傳孵化器 · Apocrypha
+# Apocrypha
 
-> 你給它一個世界，它孵化出一段屬於「你」的後傳。
-> 它不重述原作，它讓你走進去活一遍。
+> [English](SKILL.md) · [中文](SKILL.zh-TW.md)
+
+> You give it a world, and it hatches an apocryphal sequel that belongs to *you*.
+> It does not retell the source. It lets you walk in and live it once.
 >
 > Made by **llamppost** · https://llamppost.ai · MIT License
 
-這支 skill 是一台**孵化引擎**：吃進一個世界（一個 IP 或主題），用一套精簡的世界蒸餾邏輯把世界觀拆透、解出它的「世界 DNA」，再灌進固定的模擬器骨架，吐出一支**世界自洽、可安裝、可即玩**的沉浸式文字遊戲 GM skill。
+This skill is a **hatching engine**: it takes in a world (an IP or a theme), uses a lean world-distillation logic to pull the worldview apart and solve for its "world DNA," then pours that into a fixed simulator skeleton and outputs an **internally consistent, installable, instantly playable** immersive text-game GM skill.
 
-產物的本質是**後傳**：玩家把自己插進那個世界，孵化一段原作裡沒有、但邏輯上站得住的延續故事。
+What it produces is, in essence, an **apocryphal sequel**: the player writes themselves into that world and hatches a continuation story that never appeared in the source but holds up logically.
 
-## IP 姿態（讀寫前先記住）
+## IP Stance (read this before reading or writing)
 
-- 這支引擎與它的模板**永遠 IP 乾淨**，不預載、不內嵌任何真實作品的內容。本檔一律用中性原型示意（一所魔法學校／一艘世代殖民艦／一個武俠門派）。
-- 真實作品只在**使用者執行引擎時**由使用者自帶（BYO-world）。孵化出來的成品會引用該世界的專有名詞、那是使用者自己 runtime 裡的後傳產物。
-- 對外散布的永遠是**引擎本身**，本引擎不散布、不內含任何特定 IP 的成品。
+- This engine and its template are **always IP-clean**. They pre-load and embed no content from any real work. This file uses neutral archetypes throughout (a school of magic / a generation colony ship / a martial-arts sect).
+- Real works are only ever supplied **by the user at runtime** (BYO-world). The hatched product will reference that world's proper nouns; that is an apocryphal-sequel artifact living in the user's own runtime.
+- What gets distributed publicly is always **the engine itself**. This engine does not distribute, and contains no, finished product tied to any specific IP.
 
-## 它在做什麼（一句話）
+## What It Does (in one line)
 
-把「我想玩某個世界」變成「一支真的能玩、且不會出戲的文字遊戲」。難的不是寫劇情，是**世界自洽**與**對原作的忠誠度**，這正是這套探勘 + 萃取邏輯派上用場的地方。
-
----
-
-## 引擎流程（6 phase，內含、不拆成獨立模組）
-
-每一 phase 是引擎內部的一段工作，不是要使用者分別安裝的步驟。phase 用詩意命名，但全部跑在這一支 skill 裡。
-
-### Phase 0 · 定境（Frame）
-
-先跟使用者鎖定：
-
-1. **世界是什麼、哪一類** — 影視劇／書籍／某個人／某件事／一套桌遊。類別會影響探勘方式（書／影視看正典文本；人看公開人格；桌遊看規則書與世界設定集）。
-2. **原作來源** — 具體作品名／集數／版本，當作忠誠度的定錨。
-3. **玩家前提與遊玩模式** — 玩家在這個世界裡扮演誰、從哪個時間點切入、故事跨度多長；以及玩家意圖是哪一種：原創角色自插、扮演正典角色本人、或見證正典（跟著書中人物的線走、看他們會發生什麼）。三種都支援，不要把想當正典主角的玩家擋下來。
-4. **忠誠模式** — 「忠於原作」或「容許偏離」。選容許偏離時，當場跟使用者敲定一張**容許偏離清單**（哪些既定結果可以被改寫，例如某角色不死、某段感情不發生），其餘一律忠於原作。
-5. **敘事語言**（`{{NARRATION_LANG}}`，預設繁體中文）與**專有名詞譯本來源**（`{{CANON_TRANSLATION_SOURCE}}`，例如某出版社的官方譯本）。
-
-**可玩性閘**：這個世界夠不夠撐起一支模擬器？檢查它有沒有 ① 可辨識的地點／空間 ② 派系或群體分層 ③ 一組有個性的角色 ④ 一套世界專屬機制（魔法／科技／武功／規則）⑤ 一種獨特調性。少於三項就回報使用者「這個世界偏薄、要不要換或補設定」，不要硬孵。
-
-> 使用者沒講清楚就問，不要猜著建。資訊模糊時 ASK，別 guess-build。
-
-**桌遊／規則類 scope 的特別處理**：若對象是一套桌遊或規則驅動的遊戲（社交推理、卡牌、策略等），產物不是敘事沉浸 sim、而是一台「遊戲跑分器」：換掉敘事骨架（冷開場／劇情基調／成長位份那套），改成規則說明 + 發牌／角色分派 + 遊戲循環 + 勝負判定。核心難點是 firewall（把隱藏資訊鎖在內部、絕不洩給玩家），不是文筆。
-
-**新手模式開關（教練提示）**：遊戲類產物（尤其規則複雜或有策略深度的）必須內建一個「新手模式」開關，開局就問玩家要不要開、整局可隨時切換。開→GM 給規則提醒、指出當下可做的推理、在明顯會當場輸掉的失誤前提醒「你確定嗎」、賽後復盤；關→純跑遊戲、不給任何提示、玩家自負盈虧。無論開或關，firewall 都不可破。敘事類 sim 也可選擇提供類似的提示開關，但非必須。
-
-### Phase 1 · 探源
-
-把世界觀拆透，寫成一份內部 world-research（不必落地獨立檔，存在工作脈絡即可）。要掃出六個面向：
-
-1. **世界骨架** — 地理／重要地點、時間線、世界運作的底層規則（魔法系統／科技設定／武學體系）。
-2. **派系分層** — 學院／陣營／家族／門派／船艙編制，各自的特質與代表領域。
-3. **角色聖經** — 原作角色清單，逐角色記：名字、個性、家庭背景、成長經歷、所屬派系、夥伴／寵物、關鍵關係。這份是忠誠度的命根，**寧可少列也不要寫錯**。
-4. **世界機制** — 成長／學習怎麼運作、有沒有積分／聲望系統、世界專屬資產（魔杖類／配劍類／職務類）。
-5. **調性 DNA** — 類型、節奏、幽默或懸疑的比例、「讓它聞起來像那個世界」的關鍵。
-6. **可玩身份軸線** — 在這個世界裡，一個人的身份是由哪些變數定義的？（出身、派系、天賦、世界資產⋯）這些直接變成開局表單的欄位。
-
-冷門世界、模型不熟時，用 WebFetch／WebSearch 補料；熱門世界靠模型既有知識即可，但仍要把角色聖經寫出來自我對齊。
-
-### Phase 2 · 煉核
-
-把 Phase 1 的研究**收斂成模擬器骨架要的欄位**，並抓出**沉浸本質**：
-
-- 這個世界若有 3 到 5 件事寫錯，整個體感就垮了，是哪幾件？（例如某角色的個性、某個專有譯名、某條世界規則）把它們標成「不可破的定錨」，寫進成品的 NPC 代入規則與重要規則裡。
-- 把可玩身份軸線整理成開局表單欄位，每欄都要有「隨機」選項。
-
-### Phase 3 · 鑄器
-
-讀 `references/simulator-template.md`，逐欄把 Phase 2 的世界 DNA 填進去：
-
-- 每一個 `{{雙大括號}}` 換成世界專屬內容。
-- 每一個 `〔角括號〕` 指示執行完就刪掉、不留在成品。
-- 「### 重要規則」整段原樣注入 `references/immersive-prose-engine.md`，並把 `{{NARRATION_LANG}}`、`{{CANON_TRANSLATION_SOURCE}}` 兩個參數替換成本世界的值。
-- 成品要能當一支獨立 GM skill 跑：自帶 frontmatter（skill_id 用世界名、languages、一句 listing_description），本體就是填好的骨架。
-- 別漏掉開頭的「開場世界觀導覽」：用一段好讀的簡介讓沒接觸過原作的玩家也能上手（這是什麼世界、有哪些種族／派系、怎麼玩），這是產物的第一印象，比照正式電子遊戲的開場。
-
-### Phase 4 · 校境
-
-成品寫完後自我 QA 四項，任何一項不過就回 Phase 3 修：
-
-1. **世界自洽** — 派系、機制、地理、時間線彼此不打架；角色聖經沒被寫錯。
-2. **忠誠度** — 原作定錨都在；若開了偏離清單，改動有沒有照「連鎖重算」處理（情緒、成長、後續行為都跟著變，不只翻結局）。
-3. **反 AI 味** — 掃整份產物（不只冷開場，連派系／系統等設定描述都要掃）：有沒有破折號、有沒有踩禁用句型與禁詞、是不是白描、譯名一致、沒有不合語境的用語。
-4. **冷啟可玩** — 心裡跑一回合：開局表單 → 入境資料確認 → 冷開場 → 4 + 1 行動，這條鏈順不順。
-
-### Phase 5 · 開孵（Hatch）
-
-1. **落地成品**：把成品寫成一支可安裝的 skill。預設路徑 `~/.claude/skills/sim-{{世界英文 slug}}/SKILL.md`（使用者要別的路徑就依使用者）。回報安裝位置與一句使用說明。
-2. **可選即玩**：問使用者要不要現在就在這個 session 直接開跑。要的話，引擎切換成那支成品的 GM 身份，從開局表單開始帶玩；不要的話就停在「已產出、可安裝」。
+It turns "I want to play in a certain world" into "a text game that actually plays, and never breaks immersion." The hard part is not writing plot, it is **world-consistency** and **fidelity to the source**, which is exactly where this excavation-plus-extraction logic earns its keep.
 
 ---
 
-## 跟使用者互動的態度
+## Engine Flow (6 phases, built in, not split into separate modules)
 
-- 預設自動把流程跑順，不要每個 phase 都停下來請示；只有 Phase 0 的關鍵設定（世界、忠誠模式、偏離清單、語言）需要先跟使用者確認，其餘自動推進。
-- 使用者中途提任何要求，以使用者需求優先。
-- 成品的敘事預設依使用者指定的語言；繁體中文時用台灣語法、避免不合語境的用語（細節在沉浸散文引擎）。
+Each phase is a stretch of work inside the engine, not a step the user installs separately. The phases carry poetic names, but they all run inside this one skill.
 
-## 邊界（這支引擎做不到什麼）
+### Phase 0 · Frame (定境)
 
-- 不替使用者承擔版權判斷：它只生成「使用者自帶世界」的後傳成品，不評估該世界能不能商用。
-- 世界太薄（沒角色、沒機制、沒地點）時孵不出好東西，會在可玩性閘擋下並回報。
-- 它孵的是**文字遊戲 GM**，不是畫面、不是程式；產物是一支 GM skill。
+First, lock these down with the user:
+
+1. **What the world is, and which category**: a film or show / a book / a person / an event / a tabletop game. The category shapes how you excavate (books and screen works go to the canonical text; a person goes to their public persona; a tabletop game goes to the rulebook and the world-setting compendium).
+2. **Source of the original**: the specific title / episodes / edition, used as the anchor for fidelity.
+3. **Player premise and play mode**: who the player plays in this world, what point in time they enter from, how long the story spans; plus which kind of intent the player has: an original character written in, playing a canonical character themselves, or witnessing canon (following a book character's thread to see what happens to them). All three are supported. Do not turn away a player who wants to be the canonical protagonist.
+4. **Fidelity mode**: "faithful to the source" or "permitted divergence." If they pick permitted divergence, settle a **permitted-divergence list** with the user on the spot (which established outcomes may be rewritten, e.g. a certain character does not die, a certain romance does not happen); everything else stays faithful to the source.
+5. **Narration language** (`{{NARRATION_LANG}}`, defaults to the user's working language; English is the default and example in this edition) and **proper-noun translation source** (`{{CANON_TRANSLATION_SOURCE}}`, e.g. a given publisher's official translation).
+
+**Playability gate**: Is this world rich enough to carry a simulator? Check whether it has ① recognizable places / spaces ② factions or layered groups ③ a cast with distinct personalities ④ a world-specific mechanic (magic / technology / martial arts / rules) ⑤ a distinctive tone. Fewer than three of these, report back to the user that "this world is thin, want to swap it or flesh out the setting," and do not force the hatch.
+
+> If the user has not been clear, ask. Do not guess and build. When information is fuzzy, ASK, do not guess-build.
+
+**Special handling for tabletop / rules-driven scope**: If the subject is a tabletop game or a rules-driven game (social deduction, card, strategy, etc.), the product is not a narrative-immersion sim but a "game runner (rules engine)": swap out the narrative skeleton (the cold open / story tone / progression-rank machinery) for rules explanation + dealing / role assignment + a game loop + win-loss adjudication. The core difficulty is the firewall (keeping hidden information locked inside, never leaked to the player), not the prose.
+
+**Beginner-mode switch (coaching prompts)**: Game-type products (especially rules-heavy or strategically deep ones) must build in a "beginner mode" switch, asked at the start and toggleable at any point during play. On → the GM gives rules reminders, points out the reasoning available right now, warns "are you sure?" before a blunder that would obviously lose on the spot, and runs a post-game review. Off → it just runs the game, gives no hints, and the player lives with the outcome. On or off, the firewall stays unbroken. Narrative sims may optionally offer a similar hint switch, but it is not required.
+
+### Phase 1 · Excavate (探源)
+
+Pull the worldview fully apart and write it into an internal world-research document (it need not land as a separate file; living in the working context is enough). Sweep out six dimensions:
+
+1. **World skeleton**: geography / key places, timeline, the underlying rules of how the world runs (magic system / technology setup / martial-arts framework).
+2. **Faction layers**: houses / camps / families / sects / ship-quarters assignments, each with its traits and signature domains.
+3. **Character bible**: the roster of source characters, recording for each: name, personality, family background, formative history, faction, companions / pets, key relationships. This document is the lifeblood of fidelity, so **list fewer rather than write any wrong**.
+4. **World mechanics**: how growth / learning works, whether there is a points / reputation system, world-specific assets (wand-type / sword-type / role-type).
+5. **Tonal DNA**: genre, pacing, the ratio of humor or suspense, the keys to "making it smell like that world."
+6. **Playable-identity axes**: in this world, which variables define a person's identity? (origin, faction, talent, world assets...) These become the fields of the character-creation form directly.
+
+For obscure worlds the model is not familiar with, use WebFetch / WebSearch to fill in material; for popular worlds the model's existing knowledge is enough, but still write out the character bible to self-align.
+
+### Phase 2 · Distill (煉核)
+
+**Converge** Phase 1's research **into the fields the simulator skeleton needs**, and pin down the **immersive essence**:
+
+- If 3 to 5 things in this world were written wrong, the whole feel would collapse. Which are they? (e.g. a certain character's personality, a certain proper-noun translation, a certain world rule.) Mark them as **unbreakable anchors** and write them into the product's NPC Casting Rules and Core Rules.
+- Organize the playable-identity axes into character-creation fields, every field carrying a "random" option.
+
+### Phase 3 · Forge (鑄器)
+
+Read `references/simulator-template.md` and fill in Phase 2's world DNA field by field:
+
+- Replace every `{{double-brace token}}` with world-specific content.
+- Every `〔angle-bracket instruction〕` is deleted once executed; none remain in the product.
+- Inject the full text of `references/immersive-prose-engine.md` verbatim into the "### Core Rules" section, and replace the two parameters `{{NARRATION_LANG}}` and `{{CANON_TRANSLATION_SOURCE}}` with this world's values.
+- The product must run as a standalone GM skill: it carries its own frontmatter (skill_id using the world name, languages, a one-line listing_description), and the body is the filled-in skeleton.
+- Do not miss the opening "Opening World Primer": use one easy-to-read intro so a player who has never touched the source can pick it up (what world this is, what races / factions there are, how to play). This is the product's first impression, on par with a proper video game's opening.
+
+### Phase 4 · Calibrate (校境)
+
+Once the product is written, self-QA on four counts; if any one fails, return to Phase 3 and fix:
+
+1. **World-consistency**: factions, mechanics, geography, and timeline do not clash with one another; the character bible has not been written wrong.
+2. **Fidelity**: the source anchors are all present; if a divergence list was opened, were the changes handled with "chain recomputation" (emotions, growth, downstream behavior all shift accordingly, not just a flipped ending)?
+3. **Anti-AI-slop**: sweep the whole product (not just the cold open, but the faction / system and other setting descriptions too): any em-dashes, any banned sentence patterns or banned words tripped, is it concrete depiction, are the translations consistent, no out-of-context phrasing.
+4. **Cold-start playable**: run one round in your head: character creation → intake confirmation → cold open → 4 + 1 actions; does this chain flow.
+
+### Phase 5 · Hatch (開孵)
+
+1. **Land the product**: write the product as an installable skill. Default path `~/.claude/skills/sim-{{world english slug}}/SKILL.md` (if the user wants a different path, follow the user). Report the install location and a one-line usage note.
+2. **Optional instant play**: ask the user whether to start playing right now in this session. If yes, the engine switches into that product's GM identity and runs the player through it starting from character creation; if no, stop at "produced, installable."
 
 ---
 
-## 檔案
+## Attitude Toward the User
 
-- `references/simulator-template.md` — 模擬器骨架 15 區塊填空模板。
-- `references/immersive-prose-engine.md` — 反 AI 味沉浸散文鐵律，原樣注入每一支成品。
+- By default, run the flow through smoothly; do not stop and check in at every phase. Only Phase 0's key settings (world, fidelity mode, divergence list, language) need confirming with the user first; the rest advances automatically.
+- If the user raises any request midway, the user's needs come first.
+- The product's narration defaults to the language the user specifies; for the user's working language, use natural local grammar and avoid out-of-context phrasing (details in the immersive prose engine).
+
+## Boundaries (what this engine cannot do)
+
+- It does not take on copyright judgment for the user: it only generates apocryphal-sequel products for a "user-supplied world," and does not assess whether that world can be used commercially.
+- When a world is too thin (no characters, no mechanics, no places), it cannot hatch anything good, and will stop it at the playability gate and report back.
+- What it hatches is a **text-game GM**, not visuals and not code; the product is a GM skill.
 
 ---
 
-後傳孵化器 · Apocrypha 由 **llamppost** 創作並維護（https://llamppost.ai）。MIT License。歡迎自由使用、修改、散布，請保留本標註。
+## Files
+
+- `references/simulator-template.md`: the 15-block fill-in-the-blank template for the simulator skeleton.
+- `references/immersive-prose-engine.md`: the anti-AI-slop immersive-prose canon, injected verbatim into every product.
+
+---
+
+Apocrypha is created and maintained by **llamppost** (https://llamppost.ai). MIT License. Free to use, modify, and distribute; please keep this attribution.
