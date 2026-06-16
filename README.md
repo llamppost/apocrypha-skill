@@ -26,11 +26,20 @@ The engine itself is **always IP-clean**: it preloads nothing and embeds no real
 
 ## How to use it
 
-Install this repo as an agent skill (Claude Code, Codex, and any other runtime that supports skills):
+Install this repo as an agent skill (Claude Code, Codex, and any other runtime that supports skills).
 
-1. Drop the whole folder into your skills directory (for example, Claude Code's `~/.claude/skills/apocrypha/`).
-2. In conversation, say "hatch a simulator," "turn *some work* into a simulator," or "make a text game out of XX."
-3. The engine locks down the world and the play style with you, hatches an installable GM, and asks if you want to start playing right there.
+**One command (recommended):**
+
+```bash
+npx skills add llamppost/apocrypha-skill
+```
+
+**Or install manually:** drop the whole folder into your skills directory (for example, Claude Code's `~/.claude/skills/apocrypha/`).
+
+Then:
+
+1. In conversation, say "hatch a simulator," "turn *some work* into a simulator," or "make a text game out of XX."
+2. The engine locks down the world and the play style with you, hatches an installable GM, and asks if you want to start playing right there.
 
 What's in the engine:
 
