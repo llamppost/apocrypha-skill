@@ -38,10 +38,10 @@ What's in the engine:
 - `references/simulator-template.md`: a fill-in-the-blanks simulator skeleton in 15 blocks
 - `references/immersive-prose-engine.md`: the anti-AI-slop rules for immersive prose, injected into every product
 
-## Entry points
+## Get it · learn more
 
-- **GitHub (here)**: clone it and use, modify, and distribute it freely as a standalone skill.
-- **llamppost**: one-click install through llamppost (free). See https://llamppost.ai for details.
+- **GitHub (here)**: this is where you install it. Clone the repo and use, modify, and distribute it freely as a standalone skill.
+- **llamppost**: learn more about Apocrypha and the wider llamppost world at https://llamppost.ai.
 
 ## Try it instantly (ChatGPT)
 
