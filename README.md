@@ -51,7 +51,7 @@ Note: the ChatGPT version is a limited taster. For the full experience, install 
 
 ## License and attribution
 
-MIT License. You're welcome to use, modify, distribute, and sell it freely. Please **keep the copyright and creator attribution** per the MIT terms:
+MIT License. You're welcome to use, modify, and distribute it freely. Please **keep the copyright and creator attribution** per the MIT terms:
 
 > Apocrypha is created by **llamppost** (https://llamppost.ai). Please keep this attribution per the MIT terms.
 
