@@ -26,20 +26,37 @@ The engine itself is **always IP-clean**: it preloads nothing and embeds no real
 
 ## How to use it
 
-Install this repo as an agent skill (Claude Code, Codex, and any other runtime that supports skills).
+Apocrypha installs as an agent skill (Claude Code, Codex, Cursor, and any other runtime that supports skills).
 
-**One command (recommended):**
+### The easy way: paste this to your AI agent (no GitHub, no terminal)
+
+Copy the block below and paste it to your AI agent. It installs Apocrypha for you.
+
+```text
+Please install the "Apocrypha" skill for me.
+
+If you are an AI agent that can run commands, run:
+  npx skills add llamppost/apocrypha-skill
+
+If you cannot run that, fetch https://github.com/llamppost/apocrypha-skill
+and copy SKILL.md and the references/ folder into my skills directory
+(for Claude Code that is ~/.claude/skills/apocrypha/), keeping the structure.
+
+When it is installed, tell me, and tell me I can start by saying
+"hatch a simulator" or "make a text game out of <a world I love>".
+```
+
+### If you use the command line
 
 ```bash
 npx skills add llamppost/apocrypha-skill
 ```
 
-**Or install manually:** drop the whole folder into your skills directory (for example, Claude Code's `~/.claude/skills/apocrypha/`).
+Or install manually: drop the whole folder into your skills directory (for example, `~/.claude/skills/apocrypha/`).
 
-Then:
+### Then
 
-1. In conversation, say "hatch a simulator," "turn *some work* into a simulator," or "make a text game out of XX."
-2. The engine locks down the world and the play style with you, hatches an installable GM, and asks if you want to start playing right there.
+In conversation, say "hatch a simulator," "turn *some work* into a simulator," or "make a text game out of XX." The engine locks down the world and the play style with you, hatches an installable GM, and asks if you want to start playing right there.
 
 What's in the engine:
 
