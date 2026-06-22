@@ -71,6 +71,16 @@ npx skills add llamppost/apocrypha-skill
 - **GitHub（這裡）**：從這裡安裝。clone 下來，當 standalone skill 自由使用、修改、散布。
 - **llamppost**：了解更多後傳孵化器與 llamppost 的官方資訊，詳見 https://llamppost.ai。
 
+## 社群
+
+有問題、想炫耀你孵出來的世界，或想回報 bug？來找我們：
+
+- **Discord**：https://discord.gg/eYnMrtsKEQ — 問問題、回報 bug、分享你孵出來的作品
+- **Instagram**：https://www.instagram.com/llamppost.ai
+- **Threads**：https://www.threads.com/@llamppost.ai
+- **Email**：hello@llamppost.ai
+- **官網**：https://llamppost.ai
+
 ## 授權與標註
 
 MIT License。歡迎自由使用、修改、散布。請依 MIT 條款**保留版權與創作標註**：

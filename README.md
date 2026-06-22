@@ -69,6 +69,16 @@ What's in the engine:
 - **GitHub (here)**: this is where you install it. Clone the repo and use, modify, and distribute it freely as a standalone skill.
 - **llamppost**: learn more about Apocrypha and the wider llamppost world at https://llamppost.ai.
 
+## Community
+
+Questions, show-and-tell a world you hatched, or report an issue? Come hang out:
+
+- **Discord**: https://discord.gg/eYnMrtsKEQ — ask questions, report bugs, share what you hatched
+- **Instagram**: https://www.instagram.com/llamppost.ai
+- **Threads**: https://www.threads.com/@llamppost.ai
+- **Email**: hello@llamppost.ai
+- **Web**: https://llamppost.ai
+
 ## Try it instantly (ChatGPT)
 
 Want a quick taste before installing? Play in the [Apocrypha GPT](https://chatgpt.com/g/g-6a2a320f3c688191a8e702d816297bbc-apocrypha-hou-chuan-fu-hua-qi) right inside ChatGPT.
